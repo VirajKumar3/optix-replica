@@ -1,0 +1,24 @@
+extends layouts/LayoutTheme
+include mixins/home/landing/Footer
+
+append variables
+  - var currentPage = 'wishlist'
+
+append content
+  section.wishlist-section.eyewear-section
+    .container
+      .eyewear-header
+        nav(aria-label="breadcrumb")
+          ol.breadcrumb
+            li.breadcrumb-item: a(href="index.html") Home
+            li.breadcrumb-item.active(aria-current="page") Wishlist
+        h2.eyewear-title My Wishlist
+      
+      #wishlist-container.eyewear-grid
+        // Items will be dynamically injected by JavaScript
+        
+      #empty-wishlist-msg.text-center.py-5.d-none
+        p.text-muted.fs-1 Your wishlist is empty.
+        a.btn.btn-dark.rounded-pill.mt-3.px-4(href="eyeglasses.html") SHOP NOW
+          
+  +Footer

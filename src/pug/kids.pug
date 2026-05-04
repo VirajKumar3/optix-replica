@@ -1,0 +1,21 @@
+extends layouts/LayoutTheme
+include mixins/eyewear/EyewearGrid
+include mixins/home/landing/Footer
+
+append variables
+  - var currentPage = 'kids'
+
+append content
+  -
+    var products = [
+      { image: 'glasses-round.png', brand: 'Kids Pro', price: '1,500', originalPrice: '2,500', discount: '40' },
+      { image: 'glasses-square.png', brand: 'Disney', price: '2,200', originalPrice: '3,000', discount: '26' },
+      { image: 'sunglass-1.png', brand: 'Junior Ray', price: '3,500', originalPrice: '4,500', discount: '22' },
+      { image: 'sunglass-2.png', brand: 'Kids Safe', price: '1,200', originalPrice: '1,800', discount: '33' },
+      { image: 'glasses-aviator.png', brand: 'Barbie', price: '2,800', originalPrice: '3,500', discount: '20' },
+      { image: 'sunglass-3.png', brand: 'Lego', price: '1,900', originalPrice: '2,800', discount: '32' },
+      { image: 'glasses-round.png', brand: 'Marvel', price: '2,500', originalPrice: '3,200', discount: '21' },
+      { image: 'sunglass-4.png', brand: 'Kids Sport', price: '1,100', originalPrice: '1,600', discount: '31' }
+    ]
+  +CategoryGrid('Kids Eyewear', products)
+  +Footer

@@ -1,0 +1,49 @@
+mixin ContactLensCard(product, index)
+  .eyewear-card-wrapper.animate-on-scroll(
+    style=`transition-delay: ${index * 0.1}s`
+    data-product-id=`contact-${index}-${product.brand}`
+    data-product-image=product.image
+    data-product-brand=product.brand
+    data-product-price=product.price
+    data-product-original-price=product.originalPrice
+    data-product-discount=product.discount
+  )
+    .card.eyewear-card.h-100.border-0
+      .eyewear-img-container
+        img.card-img-top(src=`${CWD}assets/img/gallery/${product.image}` alt=product.brand)
+      .card-body.pb-0
+        p.product-brand= product.brand
+        .price-section
+          span.current-price= `₹${product.price}`
+          span.original-price= `₹${product.originalPrice}`
+        p.discount-badge= `${product.discount}% OFF`
+      .card-footer.eyewear-card-footer.bg-transparent.border-0.pt-0.pb-4.px-3
+        .d-flex.align-items-center.gap-2
+          button.btn.btn-dark.flex-grow-1.buy-now-btn BUY NOW
+          button.btn.btn-fav
+            i(data-feather="heart")
+
+mixin ContactLensGrid
+  section.eyewear-section
+    .container
+      .eyewear-header
+        nav(aria-label="breadcrumb")
+          ol.breadcrumb
+            li.breadcrumb-item: a(href="index.html") Home
+            li.breadcrumb-item.active(aria-current="page") Contact Lenses
+        h2.eyewear-title Contact Lenses
+      
+      .eyewear-grid
+        -
+          var products = [
+            { image: 'contacts-cat.png', brand: 'Acuvue', price: '2,500', originalPrice: '3,200', discount: '22' },
+            { image: 'contacts-cat.png', brand: 'Bausch + Lomb', price: '1,800', originalPrice: '2,500', discount: '28' },
+            { image: 'contacts-cat.png', brand: 'Alcon', price: '3,200', originalPrice: '4,000', discount: '20' },
+            { image: 'contacts-cat.png', brand: 'CooperVision', price: '2,100', originalPrice: '2,800', discount: '25' },
+            { image: 'contacts-cat.png', brand: 'Johnson & Johnson', price: '4,500', originalPrice: '5,500', discount: '18' },
+            { image: 'contacts-cat.png', brand: 'FreshLook', price: '1,200', originalPrice: '1,800', discount: '33' },
+            { image: 'contacts-cat.png', brand: 'Air Optix', price: '2,900', originalPrice: '3,800', discount: '24' },
+            { image: 'contacts-cat.png', brand: 'Biofinity', price: '3,500', originalPrice: '4,500', discount: '22' }
+          ]
+        each product, index in products
+          +ContactLensCard(product, index)

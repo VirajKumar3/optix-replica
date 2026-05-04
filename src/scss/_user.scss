@@ -1,0 +1,210 @@
+// 
+// 
+// user.scss
+//
+// Place your own theme CSS or SCSS rules below this line, these rules will override any Bootstrap and theme variables.
+
+/* Eyewear Listing Page Enhancements */
+
+.eyewear-section {
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+}
+
+.eyewear-header {
+  margin-bottom: 2.5rem;
+  padding-left: 0.5rem;
+
+  .breadcrumb {
+    margin-bottom: 0.75rem;
+    background: transparent;
+    padding: 0;
+    
+    .breadcrumb-item {
+      font-size: 0.85rem;
+      a {
+        color: #6c757d;
+        text-decoration: none;
+        &:hover { color: #000; }
+      }
+      &.active { color: #212529; font-weight: 500; }
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+      content: "/";
+      color: #6c757d;
+    }
+  }
+
+  .eyewear-title {
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: #212529;
+    margin: 0;
+  }
+}
+
+.eyewear-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 0.5rem;
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.eyewear-card-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eyewear-card {
+  border-radius: 12px !important;
+  background: #fff;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    cursor: pointer;
+
+    .card-img-top {
+      transform: scale(1.05);
+    }
+  }
+
+  .eyewear-img-container {
+    background: #fff;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+
+    .card-img-top {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  .card-body {
+    padding: 1rem;
+    text-align: left;
+    flex-grow: 1;
+
+    .product-brand {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #212529;
+      margin-bottom: 12px;
+      margin-top: 4px;
+    }
+
+    .price-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 6px;
+
+      .current-price {
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: #000;
+      }
+
+      .original-price {
+        color: #999;
+        font-size: 0.95rem;
+        text-decoration: line-through;
+      }
+    }
+
+    .discount-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #888;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+.eyewear-card-footer {
+  .buy-now-btn {
+    font-size: 0.7rem; // smaller
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 0.8rem; // smaller
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: #333;
+      transform: scale(1.02);
+    }
+    
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .btn-fav {
+    width: 36px; // smaller
+    height: 36px; // smaller
+    border-radius: 6px;
+    border: 1px solid #eee;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.3s ease;
+
+    svg {
+      width: 16px; // smaller
+      height: 16px; // smaller
+      stroke: #212529;
+      stroke-width: 2;
+    }
+
+    &:hover {
+      background: #f8f9fa;
+      border-color: #ddd;
+      svg { stroke: #000; }
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    &.active {
+      background: #fff5f5;
+      border-color: #ffc9c9;
+      svg {
+        fill: #ff4d4d;
+        stroke: #ff4d4d;
+      }
+    }
+  }
+}

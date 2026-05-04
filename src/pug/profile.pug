@@ -1,0 +1,218 @@
+extends layouts/LayoutTheme
+
+append variables
+  - var currentPage = 'profile'
+
+block mainContent
+  section.py-0.min-vh-100.d-flex.align-items-center(style="background-color: #006073;")
+    .container
+      .row.g-4.justify-content-center
+        // Left Column (Sidebar & Settings)
+        .col-lg-4.col-md-5
+          // Sidebar Card
+          .card.border-0.rounded-4.shadow-lg.mb-4.overflow-hidden
+            .card-body.p-0
+              .p-4.text-start.d-flex.align-items-center.gap-3.border-bottom
+                .avatar-container
+                  img.rounded-circle(src="assets/img/gallery/him.png" alt="user" style="width: 60px; height: 60px; object-fit: cover;")
+                div
+                  h6.fw-bold.mb-0#sidebar-name Your name
+                  p.text-muted.small.mb-0#sidebar-email yourname@gmail.com
+              
+              .menu-list.py-2
+                a.menu-item.active(href="#")
+                  i.me-3(data-feather="user")
+                  | My Profile
+                  i.ms-auto(data-feather="chevron-right" style="width: 14px;")
+                a.menu-item(href="#")
+                  i.me-3(data-feather="settings")
+                  | Settings
+                  i.ms-auto(data-feather="chevron-right" style="width: 14px;")
+                .menu-item.d-flex.align-items-center
+                  i.me-3(data-feather="bell")
+                  span Notification
+                  span.ms-auto.badge.bg-light.text-muted.fw-normal.rounded-pill.px-2 Allow
+                a.menu-item.text-dark#logout-btn(href="#")
+                  i.me-3(data-feather="log-out")
+                  | Log Out
+
+          // Settings Card
+          .card.border-0.rounded-4.shadow-lg
+            .card-body.p-4
+              .d-flex.justify-content-between.align-items-center.mb-4
+                h5.fw-bold.mb-0 Settings
+                button.btn-close.small(type="button" aria-label="Close")
+              
+              .mb-3.d-flex.justify-content-between.align-items-center
+                span.text-700 Theme
+                .dropdown
+                  button.btn.btn-sm.btn-light.dropdown-toggle.text-muted(type="button" data-bs-toggle="dropdown") Light
+              
+              .mb-0.d-flex.justify-content-between.align-items-center
+                span.text-700 Language
+                .dropdown
+                  button.btn.btn-sm.btn-light.dropdown-toggle.text-muted(type="button" data-bs-toggle="dropdown") Eng
+
+        // Right Column (Main Form)
+        .col-lg-6.col-md-7
+          .card.border-0.rounded-4.shadow-lg.h-100
+            .card-body.p-5
+              .d-flex.justify-content-end
+                button.btn-close(type="button" aria-label="Close")
+              
+              .text-start.mb-5.d-flex.align-items-center.gap-4
+                .position-relative
+                  input#avatar-input.d-none(type="file" accept="image/*")
+                  img#profile-avatar.rounded-circle(src="assets/img/gallery/him.png" alt="user" style="width: 80px; height: 80px; object-fit: cover;")
+                  button#edit-avatar-btn.btn.btn-white.btn-sm.rounded-circle.position-absolute.bottom-0.end-0.shadow-sm.p-1(style="width: 24px; height: 24px;")
+                    i(data-feather="edit-2" style="width: 12px; height: 12px;")
+              
+              form#profile-form
+                .row.mb-4.align-items-center
+                  .col-sm-4
+                    label.fw-medium.text-700 Name
+                  .col-sm-8.text-end
+                    input.form-control.form-control-plaintext.text-end.text-muted(type="text" value="your name")
+                
+                .row.mb-4.align-items-center
+                  .col-sm-4
+                    label.fw-medium.text-700 Email account
+                  .col-sm-8.text-end
+                    input.form-control.form-control-plaintext.text-end.text-muted(type="email" value="yourname@gmail.com")
+                
+                .row.mb-4.align-items-center
+                  .col-sm-4
+                    label.fw-medium.text-700 Mobile number
+                  .col-sm-8.text-end
+                    span.text-muted Add number
+                
+                .row.mb-5.align-items-center
+                  .col-sm-4
+                    label.fw-medium.text-700 Location
+                  .col-sm-8.text-end
+                    span.text-muted USA
+
+                button.btn.btn-primary.px-5.py-3.rounded-3.fw-bold(type="button" style="background-color: #1e88e5; border: none;") Save Change
+
+append styles
+  style.
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 24px;
+      text-decoration: none;
+      color: #6c757d;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .menu-item:hover {
+      background-color: #f8f9fa;
+      color: #000;
+    }
+    .menu-item.active {
+      background-color: #f8f9fa;
+      color: #000;
+    }
+    .form-control-plaintext:focus {
+      outline: none;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .btn-close { filter: grayscale(1) invert(0); opacity: 0.5; }
+
+append scripts
+  script.
+    /* eslint-disable */
+    document.addEventListener('DOMContentLoaded', function() {
+      const userData = localStorage.getItem('optix-user');
+      const token = localStorage.getItem('optix-token');
+      if (!userData) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const user = JSON.parse(userData);
+      
+      // Populate fields
+      const updateUI = (u) => {
+        const nameElements = ['sidebar-name', 'main-name'];
+        const emailElements = ['sidebar-email', 'main-email'];
+        
+        nameElements.forEach(id => { if (document.getElementById(id)) document.getElementById(id).innerText = u.name; });
+        emailElements.forEach(id => { if (document.getElementById(id)) document.getElementById(id).innerText = u.email; });
+        
+        if (document.getElementById('user-initials')) document.getElementById('user-initials').innerText = u.name.charAt(0).toUpperCase();
+        
+        // Handle Avatars
+        const avatarUrl = u.avatar ? `http://localhost:8080${u.avatar}` : 'assets/img/gallery/him.png';
+        const avatarImgs = document.querySelectorAll('img[alt="user"]');
+        avatarImgs.forEach(img => img.src = avatarUrl);
+      };
+
+      updateUI(user);
+
+      if (user.role === 'admin') {
+        const adminLink = document.getElementById('admin-dashboard-link');
+        if (adminLink) adminLink.classList.remove('d-none');
+      }
+
+      // --- Avatar Upload Logic ---
+      const avatarInput = document.getElementById('avatar-input');
+      const editBtn = document.getElementById('edit-avatar-btn');
+
+      if (editBtn && avatarInput) {
+        editBtn.addEventListener('click', () => avatarInput.click());
+        
+        avatarInput.addEventListener('change', function() {
+          if (this.files && this.files[0]) {
+            const formData = new FormData();
+            formData.append('avatar', this.files[0]);
+
+            editBtn.disabled = true;
+            editBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+
+            fetch('http://localhost:8080/api/auth/profile/image', {
+              method: 'PUT',
+              headers: { 'Authorization': `Bearer ${token}` },
+              body: formData
+            })
+            .then(res => res.json())
+            .then(result => {
+              if (result.success) {
+                // Update local storage and UI
+                localStorage.setItem('optix-user', JSON.stringify(result.user));
+                updateUI(result.user);
+              } else {
+                alert('Upload failed: ' + result.message);
+              }
+            })
+            .catch(err => alert('Error uploading image'))
+            .finally(() => {
+              editBtn.disabled = false;
+              editBtn.innerHTML = '<i data-feather="edit-2" style="width: 12px; height: 12px;"></i>';
+              feather.replace();
+            });
+          }
+        });
+      }
+
+      // --- Redirection Logic ---
+      const closeButtons = document.querySelectorAll('.btn-close');
+      const saveBtn = document.querySelector('button.btn-primary');
+
+      const goToHome = () => { window.location.href = 'index.html'; };
+
+      closeButtons.forEach(btn => btn.addEventListener('click', goToHome));
+      if (saveBtn) saveBtn.addEventListener('click', goToHome);
+
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          localStorage.removeItem('optix-token');
+          localStorage.removeItem('optix-user');
+          window.location.href = 'index.html';
+        });
+      }
+
+      if (window.feather) feather.replace();
+    });

@@ -1,0 +1,40 @@
+extends layouts/LayoutTheme
+include mixins/home/landing/Footer
+
+append variables
+  - var currentPage = 'cart'
+
+append content
+  section.cart-section.eyewear-section
+    .container
+      .eyewear-header
+        nav(aria-label="breadcrumb")
+          ol.breadcrumb
+            li.breadcrumb-item: a(href="index.html") Home
+            li.breadcrumb-item.active(aria-current="page") Shopping Cart
+        h2.eyewear-title Your Cart
+      
+      .row
+        .col-lg-8
+          #cart-items-container.mb-4
+            // Items will be injected by JS
+          #empty-cart-msg.text-center.py-5.d-none
+            p.text-muted.fs-1 Your cart is empty.
+            a.btn.btn-dark.rounded-pill.mt-3.px-4(href="eyeglasses.html") SHOP NOW
+        
+        .col-lg-4
+          .card.border-0.shadow-sm.rounded-3.p-4#cart-summary
+            h5.fw-bold.mb-4 Order Summary
+            .d-flex.justify-content-between.mb-2
+              span.text-muted Subtotal
+              span#cart-subtotal ₹0
+            .d-flex.justify-content-between.mb-2
+              span.text-muted Shipping
+              span.text-success FREE
+            hr
+            .d-flex.justify-content-between.mb-4
+              span.fw-bold.fs-1 Total
+              span.fw-bold.fs-1#cart-total ₹0
+            button.btn.btn-dark.w-100.rounded-pill.py-3.fw-bold CHECKOUT
+            
+  +Footer

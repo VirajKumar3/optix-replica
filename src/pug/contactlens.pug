@@ -1,0 +1,21 @@
+extends layouts/LayoutTheme
+include mixins/eyewear/EyewearGrid
+include mixins/home/landing/Footer
+
+append variables
+  - var currentPage = 'contactlens'
+
+append content
+  -
+    var products = [
+      { image: 'contacts-cat.png', brand: 'Acuvue', price: '2,500', originalPrice: '3,200', discount: '22' },
+      { image: 'contacts-cat.png', brand: 'Bausch + Lomb', price: '1,800', originalPrice: '2,500', discount: '28' },
+      { image: 'contacts-cat.png', brand: 'Alcon', price: '3,200', originalPrice: '4,000', discount: '20' },
+      { image: 'contacts-cat.png', brand: 'CooperVision', price: '2,100', originalPrice: '2,800', discount: '25' },
+      { image: 'contacts-cat.png', brand: 'Johnson & Johnson', price: '4,500', originalPrice: '5,500', discount: '18' },
+      { image: 'contacts-cat.png', brand: 'FreshLook', price: '1,200', originalPrice: '1,800', discount: '33' },
+      { image: 'contacts-cat.png', brand: 'SofLens', price: '900', originalPrice: '1,500', discount: '40' },
+      { image: 'contacts-cat.png', brand: 'Air Optix', price: '3,500', originalPrice: '4,500', discount: '22' }
+    ]
+  +CategoryGrid('Contact Lenses', products)
+  +Footer

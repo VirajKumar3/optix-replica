@@ -1,0 +1,163 @@
+extends layouts/LayoutTheme
+
+append variables
+  - var currentPage = 'admin'
+
+//- Override mainContent to remove NavbarOptix
+block mainContent
+  section.py-4.bg-light(style="min-height: 100vh;")
+    .container
+      .row.mb-5.pt-5
+        .col-12.d-flex.justify-content-between.align-items-center
+          div
+            h2.fw-bold.text-1000 OPTIX ADMIN
+            p.text-700 Professional Inventory Management
+          a.btn.btn-outline-dark.rounded-pill(href="index.html") 
+            i.me-2(data-feather="home")
+            | Back to Site
+
+      // Navigation Tabs
+      .row.mb-4
+        .col-12
+          ul.nav.nav-pills.admin-nav.gap-2
+            li.nav-item
+              a.nav-link.active(href="#" data-target="dashboard-view") 
+                i.me-2(data-feather="grid")
+                | Overview
+            li.nav-item
+              a.nav-link(href="#" data-target="add-product-view") 
+                i.me-2(data-feather="plus-square")
+                | Add Product
+            li.nav-item
+              a.nav-link(href="#" data-target="manage-products-view") 
+                i.me-2(data-feather="list")
+                | Manage Products
+
+      #admin-views-container
+        // Dashboard Summary View
+        #dashboard-view.admin-view
+          .row.g-4
+            .col-md-4
+              .card.shadow-sm.border-0.p-4.rounded-3
+                h6.text-primary.fw-bold.mb-1 Total Products
+                h2#stat-total-products.fw-bold 0
+            .col-md-4
+              .card.shadow-sm.border-0.p-4.rounded-3
+                h6.text-success.fw-bold.mb-1 Active Categories
+                h2.fw-bold 3
+            .col-md-4
+              .card.shadow-sm.border-0.p-4.rounded-3
+                h6.text-warning.fw-bold.mb-1 Low Stock Items
+                h2.fw-bold 0
+
+        // Add/Edit Product Form View
+        #add-product-view.admin-view.d-none
+          .card.shadow-sm.border-0.p-4.p-lg-5.rounded-4
+            h4#form-title.fw-bold.mb-4 Add New Eyewear
+            form#product-form
+              input(type="hidden" name="productId" id="product-id")
+              .row.g-4
+                .col-md-6
+                  label.form-label.fw-bold.small Product Name
+                  input.form-control.form-optix(type="text" name="name" placeholder="e.g. Aviator Classic" required)
+                .col-md-6
+                  label.form-label.fw-bold.small Price (₹)
+                  input.form-control.form-optix(type="number" name="price" placeholder="0.00" required)
+                .col-md-3
+                  label.form-label.fw-bold.small Category
+                  select.form-select.form-optix(name="category" required)
+                    option(value="eyewear") Eyewear
+                    option(value="sunglasses") Sunglasses
+                    option(value="contact-lens") Contact Lens
+                .col-md-3
+                  label.form-label.fw-bold.small Gender
+                  select.form-select.form-optix(name="gender" required)
+                    option(value="male") Male
+                    option(value="female") Female
+                    option(value="kids") Kids
+                    option(value="unisex") Unisex
+                .col-md-3
+                  label.form-label.fw-bold.small Frame Type
+                  select.form-select.form-optix(name="frameType")
+                    option(value="full-rim") Full Rim
+                    option(value="half-rim") Half Rim
+                    option(value="rimless") Rimless
+                .col-md-3
+                  label.form-label.fw-bold.small Shape
+                  select.form-select.form-optix(name="shape")
+                    option(value="aviator") Aviator
+                    option(value="wayfarer") Wayfarer
+                    option(value="round") Round
+                    option(value="square") Square
+                    option(value="rectangle") Rectangle
+                .col-md-4
+                  label.form-label.fw-bold.small Color
+                  input.form-control.form-optix(type="text" name="color" placeholder="e.g. Gold")
+                .col-md-4
+                  label.form-label.fw-bold.small Stock
+                  input.form-control.form-optix(type="number" name="stock" value="10")
+                .col-md-4
+                  label.form-label.fw-bold.small Rating
+                  input.form-control.form-optix(type="number" name="rating" step="0.1" min="0" max="5" value="0")
+                .col-12
+                  label.form-label.fw-bold.small Description
+                  textarea.form-control.form-optix(name="description" rows="3" placeholder="Tell something about this product...")
+                .col-12
+                  label.form-label.fw-bold.small Product Images
+                  .upload-zone.p-4.border.border-dashed.rounded-3.text-center.bg-light
+                    input#image-input.d-none(type="file" name="images" multiple accept="image/*")
+                    label.mb-0(for="image-input" style="cursor: pointer;")
+                      i.mb-2.text-primary(data-feather="upload-cloud" style="width: 40px; height: 40px;")
+                      p.mb-0.fw-bold Click to upload images
+                      p.text-muted.small Max 5 images allowed
+                  #image-preview-container.d-flex.gap-3.mt-3.flex-wrap
+              
+              .mt-5.d-flex.gap-3
+                button.btn.btn-dark.px-5.py-2.rounded-pill(type="submit")#submit-btn Save Product
+                button.btn.btn-outline-secondary.px-5.py-2.rounded-pill(type="button")#cancel-btn Cancel
+
+        // Manage Products View
+        #manage-products-view.admin-view.d-none
+          .card.shadow-sm.border-0.rounded-4.overflow-hidden
+            .card-header.bg-white.py-3.px-4.border-bottom
+              .row.align-items-center
+                .col
+                  h5.mb-0.fw-bold Product List
+                .col-md-4
+                  .input-group.input-group-sm
+                    span.input-group-text.bg-light.border-end-0: i(data-feather="search" style="width: 14px;")
+                    input#product-search.form-control.bg-light.border-start-0(type="text" placeholder="Search...")
+            
+            .table-responsive
+              table.table.table-hover.align-middle.mb-0
+                thead.bg-light
+                  tr
+                    th.ps-4 Product
+                    th Category
+                    th Gender
+                    th Price
+                    th Stock
+                    th.text-end.pe-4 Actions
+                tbody#products-table-body.border-top-0
+                  // Rows will be injected by JS
+
+  // Toast Notifications
+  .toast-container.position-fixed.bottom-0.end-0.p-3
+    #admin-toast.toast(role="alert" aria-live="assertive" aria-atomic="true")
+      .toast-header.bg-dark.text-white
+        strong.me-auto Optix Admin
+        button.btn-close.btn-close-white(type="button" data-bs-dismiss="toast" aria-label="Close")
+      .toast-body#toast-message Success!
+
+append styles
+  style.
+    .form-optix { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 10px 15px; }
+    .form-optix:focus { background-color: #fff; box-shadow: 0 0 0 0.25rem rgba(0,0,0,.05); border-color: #000; }
+    .admin-nav .nav-link { color: #6c757d; font-weight: 600; border-radius: 50px; padding: 10px 25px; transition: 0.3s; }
+    .admin-nav .nav-link:hover { background-color: #e9ecef; color: #000; }
+    .admin-nav .nav-link.active { background-color: #000; color: #fff !important; }
+    .border-dashed { border-style: dashed !important; border-width: 2px !important; }
+    .preview-thumb { width: 100px; height: 100px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .table thead th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #6c757d; }
+    .admin-view { animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }

@@ -1,0 +1,130 @@
+mixin MegaMenu(category)
+  .dropdown-menu.mega-menu-content.shadow-lg
+    .container
+      if category === 'Contact Lens'
+        .row.py-4
+          .col-lg-3.border-end
+            h6.menu-column-title I'm Looking For
+            ul.menu-list
+              li: a(href="#!") Monthly Disposable Contact Lens
+              li: a(href="#!") Biweekly Disposable Contact Lens
+              li: a(href="#!") Daily Disposable Contact Lens
+              li: a(href="#!") Quarterly Disposable Contact Lens
+          .col-lg-3.border-end.ps-4
+            h6.menu-column-title Type of Lens
+            ul.menu-list
+              li: a(href="#!") Multifocal (Progressive)
+              li: a(href="#!") Spherical
+              li: a(href="#!") Toric (Astigmatism)
+          .col-lg-6.ps-4
+            h6.menu-column-title Coloured Lenses
+            .row
+              .col-6
+                ul.menu-list
+                  li: a(href="#!") Aqua
+                  li: a(href="#!") Blue Topaz
+                  li: a(href="#!") Dark Hazel
+                  li: a(href="#!") Green
+                  li: a(href="#!") Green Amazon
+                  li: a(href="#!") Grey
+                  li: a(href="#!") Light Green
+                  li: a(href="#!") Violet
+              .col-6
+                ul.menu-list
+                  li: a(href="#!") Blue
+                  li: a(href="#!") Brown
+                  li: a(href="#!") Dark Green
+                  li: a(href="#!") Green Ocean
+                  li: a(href="#!") Green Turquoise
+                  li: a(href="#!") Hazel
+                  li: a(href="#!") Violet Amethyst
+      else
+        .row.py-4
+          .col-lg-4.border-end
+            h6.menu-column-title I'm Looking For
+            .row.g-3.text-center
+              .col-4
+                a.category-item(href="men.html")
+                  img.img-fluid.rounded-circle.mb-2(src=`${CWD}assets/img/gallery/him.png` alt="Men" style="width: 60px; height: 60px; object-fit: cover;")
+                  span.d-block.small.fw-bold MEN
+              .col-4
+                a.category-item(href="women.html")
+                  img.img-fluid.rounded-circle.mb-2(src=`${CWD}assets/img/gallery/her.png` alt="Women" style="width: 60px; height: 60px; object-fit: cover;")
+                  span.d-block.small.fw-bold WOMEN
+              .col-4
+                a.category-item(href="kids.html")
+                  img.img-fluid.rounded-circle.mb-2(src=`${CWD}assets/img/gallery/kids.png` alt="Kids" style="width: 60px; height: 60px; object-fit: cover;")
+                  span.d-block.small.fw-bold KIDS
+          .col-lg-2.border-end.ps-4
+            h6.menu-column-title Shape
+            ul.menu-list
+              li: a(href="#!") Aviator
+              li: a(href="#!") Wayfarer
+              li: a(href="#!") Round
+              li: a(href="#!") Square
+              li: a(href="#!") Rectangle
+          .col-lg-2.border-end.ps-4
+            h6.menu-column-title Style
+            ul.menu-list
+              li: a(href="#!") Full Rim
+              li: a(href="#!") Half Rim
+              li: a(href="#!") Rimless
+          .col-lg-2.ps-4
+            h6.menu-column-title Top Picks
+            ul.menu-list
+              li: a(href="#!") New Arrivals
+              li: a(href="#!") Best Sellers
+
+mixin NavbarOptix
+  nav.navbar.navbar-expand-lg.navbar-light.fixed-top.py-3.d-block(data-navbar-on-scroll)
+    .container
+      a.navbar-brand.d-inline-flex(href='index.html')
+        span.text-1000.fs-2.fw-bold Optix
+      button.navbar-toggler.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+
+      #navbarSupportedContent.collapse.navbar-collapse.border-top.border-lg-0.mt-4.mt-lg-0
+        ul.navbar-nav.mx-auto.mb-2.mb-lg-0
+          li.nav-item.dropdown.px-2
+            a.nav-link.fw-medium.dropdown-toggle(aria-current='page', href='eyeglasses.html') Eyeglasses
+            +MegaMenu('Eyeglasses')
+          li.nav-item.dropdown.px-2
+            a.nav-link.fw-medium.dropdown-toggle(href='sunglasses.html') Sunglasses
+            +MegaMenu('Sunglasses')
+          li.nav-item.dropdown.px-2
+            a.nav-link.fw-medium.dropdown-toggle(href='contactlens.html') Contact Lens
+            +MegaMenu('Contact Lens')
+          li.nav-item.dropdown.px-2
+            a.nav-link.fw-medium.dropdown-toggle(href='#giftcard' data-bs-toggle='dropdown' aria-expanded='false') Gift card
+            +MegaMenu('Gift card')
+          li.nav-item.dropdown.px-2
+            a.nav-link.fw-medium.dropdown-toggle(href='#sale' data-bs-toggle='dropdown' aria-expanded='false') SALE
+            +MegaMenu('SALE')
+
+        form.d-flex
+          a(href="#!").text-1000
+            svg.feather.feather-phone.me-3(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+              path(d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z')
+          a(href="cart.html").text-1000  
+            svg.feather.feather-shopping-cart.me-3(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+              circle(cx='9' cy='21' r='1')
+              circle(cx='20' cy='21' r='1')
+              path(d='M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6')
+          a(href="#!").text-1000 
+            svg.feather.feather-search.me-3(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+              circle(cx='11' cy='11' r='8')
+              line(x1='21' y1='21' x2='16.65' y2='16.65')
+          .dropdown.d-inline-block
+            a#userDropdown.text-1000(href="login.html" data-bs-toggle="dropdown" aria-expanded="false")  
+              svg.feather.feather-user.me-3(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                path(d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2')
+                circle(cx='12' cy='7' r='4')
+            ul.dropdown-menu.dropdown-menu-end.shadow-lg.border-0.p-2#user-dropdown-menu(aria-labelledby="userDropdown" style="width: 220px; right: 0; left: auto;")
+              li.text-center.py-2
+                p.mb-0.small.text-muted Guest
+                h6.fw-bold.mb-0.text-dark Sign in to your account
+              li: hr.dropdown-divider
+              li: a.dropdown-item.rounded-pill.text-center.bg-dark.text-white.py-2.mt-2(href="login.html") Login / Signup
+          a(href="wishlist.html").text-1000  
+            svg.feather.feather-heart.me-3(xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+              path(d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z')

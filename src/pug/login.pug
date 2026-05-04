@@ -1,0 +1,61 @@
+extends layouts/LayoutTheme
+
+append variables
+  - var currentPage = 'auth'
+
+//- Override mainContent to remove NavbarOptix
+block mainContent
+  section.py-0
+    .container-fluid.px-0
+      .row.g-0.min-vh-100
+        // Left Side: Branding / Image
+        .col-lg-6.d-none.d-lg-block.position-relative
+          .auth-side-bg(style="background-image: url('assets/img/gallery/him.png'); background-size: cover; background-position: center; height: 100%;")
+            .position-absolute.top-0.start-0.w-100.h-100.bg-black.opacity-50
+            .position-absolute.bottom-0.start-0.p-5.text-white
+              a(href="index.html" style="text-decoration: none;")
+                h1.display-4.fw-bold.text-white OPTIX
+              p.fs-2.fw-light See the world differently.
+        
+        // Right Side: Auth Form
+        .col-lg-6.d-flex.align-items-center.justify-content-center.bg-white.p-4.p-md-5
+          .auth-form-container(style="max-width: 450px; width: 100%;")
+            .text-center.mb-5
+              h2.fw-bold.text-1000#auth-title Welcome Back
+              p.text-700#auth-subtitle Please enter your details to sign in.
+            
+            form#auth-form
+              .mb-3#name-field.d-none
+                label.form-label.fw-bold.small Full Name
+                input.form-control.form-optix(type="text" name="name" placeholder="John Doe")
+              
+              .mb-3
+                label.form-label.fw-bold.small Email Address
+                input.form-control.form-optix(type="email" name="email" placeholder="name@company.com" required)
+              
+              .mb-4
+                label.form-label.fw-bold.small Password
+                input.form-control.form-optix(type="password" name="password" placeholder="••••••••" required)
+              
+              button.btn.btn-dark.w-100.py-3.rounded-pill.fw-bold(type="submit")#auth-submit-btn Sign In
+            
+            .text-center.mt-4
+              p.text-700#auth-toggle-text Don't have an account? 
+                a.text-primary.fw-bold#auth-toggle-btn(href="#") Sign up for free
+              .mt-3
+                a.text-muted.small(href="index.html") Back to homepage
+  
+  // Auth Success Modal/Toast
+  .toast-container.position-fixed.bottom-0.end-0.p-3
+    #auth-toast.toast(role="alert" aria-live="assertive" aria-atomic="true")
+      .toast-header.bg-dark.text-white
+        strong.me-auto Optix Security
+        button.btn-close.btn-close-white(type="button" data-bs-dismiss="toast" aria-label="Close")
+      .toast-body#auth-toast-message Success!
+
+append styles
+  style.
+    .form-optix { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 12px 15px; }
+    .form-optix:focus { background-color: #fff; border-color: #000; box-shadow: 0 0 0 0.25rem rgba(0,0,0,0.05); }
+    .auth-form-container { animation: fadeIn 0.6s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }

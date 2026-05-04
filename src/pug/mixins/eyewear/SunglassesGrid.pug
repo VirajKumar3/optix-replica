@@ -1,0 +1,49 @@
+mixin SunglassesCard(product, index)
+  .eyewear-card-wrapper.animate-on-scroll(
+    style=`transition-delay: ${index * 0.1}s`
+    data-product-id=`sunglass-${index}-${product.brand}`
+    data-product-image=product.image
+    data-product-brand=product.brand
+    data-product-price=product.price
+    data-product-original-price=product.originalPrice
+    data-product-discount=product.discount
+  )
+    .card.eyewear-card.h-100.border-0
+      .eyewear-img-container
+        img.card-img-top(src=`${CWD}assets/img/gallery/${product.image}` alt=product.brand)
+      .card-body.pb-0
+        p.product-brand= product.brand
+        .price-section
+          span.current-price= `₹${product.price}`
+          span.original-price= `₹${product.originalPrice}`
+        p.discount-badge= `${product.discount}% OFF`
+      .card-footer.eyewear-card-footer.bg-transparent.border-0.pt-0.pb-4.px-3
+        .d-flex.align-items-center.gap-2
+          button.btn.btn-dark.flex-grow-1.buy-now-btn BUY NOW
+          button.btn.btn-fav
+            i(data-feather="heart")
+
+mixin SunglassesGrid
+  section.eyewear-section
+    .container
+      .eyewear-header
+        nav(aria-label="breadcrumb")
+          ol.breadcrumb
+            li.breadcrumb-item: a(href="index.html") Home
+            li.breadcrumb-item.active(aria-current="page") Sunglasses
+        h2.eyewear-title Sunglasses
+      
+      .eyewear-grid
+        -
+          var products = [
+            { image: 'sunglass-1.png', brand: 'Oakley', price: '8,500', originalPrice: '12,000', discount: '29' },
+            { image: 'sunglass-2.png', brand: 'Gucci', price: '25,000', originalPrice: '35,000', discount: '28' },
+            { image: 'sunglass-3.png', brand: 'Prada', price: '18,000', originalPrice: '22,000', discount: '18' },
+            { image: 'sunglass-4.png', brand: 'Vogue', price: '4,500', originalPrice: '6,500', discount: '31' },
+            { image: 'sunglass-5.png', brand: 'Rayban', price: '7,200', originalPrice: '9,000', discount: '20' },
+            { image: 'sunglass-6.png', brand: 'Fastrack', price: '2,500', originalPrice: '3,500', discount: '28' },
+            { image: 'sunglass-7.png', brand: 'Police', price: '12,000', originalPrice: '15,000', discount: '20' },
+            { image: 'sunglass-8.png', brand: 'Arnette', price: '5,500', originalPrice: '7,500', discount: '26' }
+          ]
+        each product, index in products
+          +SunglassesCard(product, index)

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>Optix | Landing, Ecommerce &amp; Business Template</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+
+    <style>
+      .form-optix {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 10px 15px;
+      }
+
+      .form-optix:focus {
+        background-color: #fff;
+        box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .05);
+        border-color: #000;
+      }
+
+      .admin-nav .nav-link {
+        color: #6c757d;
+        font-weight: 600;
+        border-radius: 50px;
+        padding: 10px 25px;
+        transition: 0.3s;
+      }
+
+      .admin-nav .nav-link:hover {
+        background-color: #e9ecef;
+        color: #000;
+      }
+
+      .admin-nav .nav-link.active {
+        background-color: #000;
+        color: #fff !important;
+      }
+
+      .border-dashed {
+        border-style: dashed !important;
+        border-width: 2px !important;
+      }
+
+      .preview-thumb {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .table thead th {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #6c757d;
+      }
+
+      .admin-view {
+        animation: fadeIn 0.4s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <section class="py-4 bg-light" style="min-height: 100vh;">
+        <div class="container">
+          <div class="row mb-5 pt-5">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+              <div>
+                <h2 class="fw-bold text-1000">OPTIX ADMIN</h2>
+                <p class="text-700">Professional Inventory Management</p>
+              </div><a class="btn btn-outline-dark rounded-pill" href="index.html"> <i class="me-2" data-feather="home"></i>Back to Site</a>
+            </div>
+          </div>
+          <!-- Navigation Tabs-->
+          <div class="row mb-4">
+            <div class="col-12">
+              <ul class="nav nav-pills admin-nav gap-2">
+                <li class="nav-item"><a class="nav-link active" href="#" data-target="dashboard-view"> <i class="me-2" data-feather="grid"></i>Overview</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-target="add-product-view"> <i class="me-2" data-feather="plus-square"></i>Add Product</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-target="manage-products-view"> <i class="me-2" data-feather="list"></i>Manage Products</a></li>
+              </ul>
+            </div>
+          </div>
+          <div id="admin-views-container">
+            <!-- Dashboard Summary View-->
+            <div class="admin-view" id="dashboard-view">
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 p-4 rounded-3">
+                    <h6 class="text-primary fw-bold mb-1">Total Products</h6>
+                    <h2 class="fw-bold" id="stat-total-products">0</h2>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 p-4 rounded-3">
+                    <h6 class="text-success fw-bold mb-1">Active Categories</h6>
+                    <h2 class="fw-bold">3</h2>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm border-0 p-4 rounded-3">
+                    <h6 class="text-warning fw-bold mb-1">Low Stock Items</h6>
+                    <h2 class="fw-bold">0</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Add/Edit Product Form View-->
+            <div class="admin-view d-none" id="add-product-view">
+              <div class="card shadow-sm border-0 p-4 p-lg-5 rounded-4">
+                <h4 class="fw-bold mb-4" id="form-title">Add New Eyewear</h4>
+                <form id="product-form">
+                  <input type="hidden" name="productId" id="product-id">
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold small">Product Name</label>
+                      <input class="form-control form-optix" type="text" name="name" placeholder="e.g. Aviator Classic" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-bold small">Price (₹)</label>
+                      <input class="form-control form-optix" type="number" name="price" placeholder="0.00" required>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label fw-bold small">Category</label>
+                      <select class="form-select form-optix" name="category" required>
+                        <option value="eyewear">Eyewear</option>
+                        <option value="sunglasses">Sunglasses</option>
+                        <option value="contact-lens">Contact Lens</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label fw-bold small">Gender</label>
+                      <select class="form-select form-optix" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="kids">Kids</option>
+                        <option value="unisex">Unisex</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label fw-bold small">Frame Type</label>
+                      <select class="form-select form-optix" name="frameType">
+                        <option value="full-rim">Full Rim</option>
+                        <option value="half-rim">Half Rim</option>
+                        <option value="rimless">Rimless</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label fw-bold small">Shape</label>
+                      <select class="form-select form-optix" name="shape">
+                        <option value="aviator">Aviator</option>
+                        <option value="wayfarer">Wayfarer</option>
+                        <option value="round">Round</option>
+                        <option value="square">Square</option>
+                        <option value="rectangle">Rectangle</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-bold small">Color</label>
+                      <input class="form-control form-optix" type="text" name="color" placeholder="e.g. Gold">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-bold small">Stock</label>
+                      <input class="form-control form-optix" type="number" name="stock" value="10">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label fw-bold small">Rating</label>
+                      <input class="form-control form-optix" type="number" name="rating" step="0.1" min="0" max="5" value="0">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label fw-bold small">Description</label>
+                      <textarea class="form-control form-optix" name="description" rows="3" placeholder="Tell something about this product..."></textarea>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label fw-bold small">Product Images</label>
+                      <div class="upload-zone p-4 border border-dashed rounded-3 text-center bg-light">
+                        <input class="d-none" id="image-input" type="file" name="images" multiple accept="image/*">
+                        <label class="mb-0" for="image-input" style="cursor: pointer;"><i class="mb-2 text-primary" data-feather="upload-cloud" style="width: 40px; height: 40px;"></i>
+                          <p class="mb-0 fw-bold">Click to upload images</p>
+                          <p class="text-muted small">Max 5 images allowed</p>
+                        </label>
+                      </div>
+                      <div class="d-flex gap-3 mt-3 flex-wrap" id="image-preview-container"></div>
+                    </div>
+                  </div>
+                  <div class="mt-5 d-flex gap-3">
+                    <button class="btn btn-dark px-5 py-2 rounded-pill" type="submit" id="submit-btn">Save Product</button>
+                    <button class="btn btn-outline-secondary px-5 py-2 rounded-pill" type="button" id="cancel-btn">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- Manage Products View-->
+            <div class="admin-view d-none" id="manage-products-view">
+              <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                <div class="card-header bg-white py-3 px-4 border-bottom">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h5 class="mb-0 fw-bold">Product List</h5>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-sm"><span class="input-group-text bg-light border-end-0"><i data-feather="search" style="width: 14px;"></i></span>
+                        <input class="form-control bg-light border-start-0" id="product-search" type="text" placeholder="Search...">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
+                      <tr>
+                        <th class="ps-4">Product</th>
+                        <th>Category</th>
+                        <th>Gender</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th class="text-end pe-4">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody class="border-top-0" id="products-table-body">
+                      <!-- Rows will be injected by JS-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Toast Notifications-->
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast" id="admin-toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header bg-dark text-white"><strong class="me-auto">Optix Admin</strong>
+            <button class="btn-close btn-close-white" type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body" id="toast-message">Success!</div>
+        </div>
+      </div>
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="vendors/@popperjs/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="vendors/feather-icons/feather.min.js"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="assets/js/theme.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  </body>
+
+</html>

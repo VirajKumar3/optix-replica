@@ -1,0 +1,21 @@
+extends layouts/LayoutTheme
+include mixins/eyewear/EyewearGrid
+include mixins/home/landing/Footer
+
+append variables
+  - var currentPage = 'sunglasses'
+
+append content
+  -
+    var products = [
+      { image: 'sunglass-1.png', brand: 'Oakley', price: '8,500', originalPrice: '12,000', discount: '29' },
+      { image: 'sunglass-2.png', brand: 'Gucci', price: '25,000', originalPrice: '35,000', discount: '28' },
+      { image: 'sunglass-3.png', brand: 'Prada', price: '18,000', originalPrice: '22,000', discount: '18' },
+      { image: 'sunglass-4.png', brand: 'Vogue', price: '4,500', originalPrice: '6,500', discount: '31' },
+      { image: 'sunglass-1.png', brand: 'Rayban', price: '12,500', originalPrice: '15,000', discount: '16' },
+      { image: 'sunglass-2.png', brand: 'Police', price: '6,500', originalPrice: '9,000', discount: '27' },
+      { image: 'sunglass-3.png', brand: 'Fastrack', price: '2,500', originalPrice: '3,500', discount: '28' },
+      { image: 'sunglass-4.png', brand: 'Titan', price: '5,500', originalPrice: '7,500', discount: '26' }
+    ]
+  +CategoryGrid('Sunglasses', products)
+  +Footer

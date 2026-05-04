@@ -1,0 +1,41 @@
+mixin AuthNotification
+  section.py-0.auth-notification-section
+    .container
+      .row.justify-content-center
+        .col-lg-8.col-md-10
+          .auth-notification-bar.shadow-sm.bg-white.p-3.text-center.rounded-4.floating-bar
+            .d-flex.align-items-center.justify-content-between.flex-wrap.gap-3
+              .d-flex.align-items-center.gap-3
+                .icon-circle.bg-light.p-2.rounded-circle
+                  i.text-dark(data-feather="user" style="width: 20px; height: 20px;")
+                p.mb-0.text-1000.fw-medium.small Join Optix today for exclusive offers and personalized eyewear recommendations!
+              .auth-actions.d-flex.gap-2
+                a.btn.btn-sm.btn-outline-dark.rounded-pill.px-3(href="login.html") Log In
+                a.btn.btn-sm.btn-dark.rounded-pill.px-3(href="login.html?mode=signup") Sign Up
+
+append styles
+  style.
+    .auth-notification-section {
+      margin-top: 30px; /* Spacing from navbar */
+      margin-bottom: 20px;
+    }
+    .auth-notification-bar {
+      max-width: 800px; /* Roughly 60-70% of standard container width */
+      margin: 0 auto;
+      border: 1px solid #f0f0f0;
+      transition: all 0.3s ease;
+    }
+    .auth-notification-bar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+    }
+    .floating-bar {
+      z-index: 10;
+      position: relative;
+    }
+    @media (max-width: 768px) {
+      .auth-notification-bar {
+        width: 95%;
+        padding: 15px !important;
+      }
+    }

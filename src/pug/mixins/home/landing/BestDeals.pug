@@ -1,0 +1,38 @@
+mixin CategoryCard(image, title)
+  .col-md-4.mb-4
+    .card.card-span.h-100.shadow-sm.border-0.rounded-0.overflow-hidden
+      img.card-img.h-100(src=`${CWD}assets/img/gallery/${image}` style="object-fit: cover; min-height: 400px;" alt=title)
+      .card-img-overlay.d-flex.flex-column.justify-content-end.p-4(style="background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);")
+        h4.text-white.fw-bold.mb-0= title
+      a.stretched-link(href="#!")
+
+mixin PromoCard(image, title, subtitle, colClass)
+  div(class=colClass).mb-4
+    .card.card-span.h-100.shadow-none.border-0.rounded-0.overflow-hidden.bg-transparent
+      img.card-img-top.rounded-0(src=`${CWD}assets/img/gallery/${image}` style="object-fit: cover; min-height: 280px;" alt=title)
+      .card-body.ps-0.pt-3
+        h5.text-secondary.fw-medium.mb-1= subtitle
+        h2.text-dark.fw-bold.fs-1.fs-lg-2= title
+      a.stretched-link(href="#!")
+
+mixin BestDeals
+  +Section.py-8
+    .row.justify-content-center
+      .col-lg-8.text-center.mb-6
+        h2.fw-bold.display-4 What Are You Looking For?
+    .row
+      +CategoryCard('eyeglasses-cat.png', 'Eyeglasses')
+      +CategoryCard('sunglasses-cat.png', 'Sunglasses')
+      +CategoryCard('contacts-cat.png', 'Contact Lens')
+    
+    .row.justify-content-center.mt-8.mb-5
+      .col-lg-10.text-center
+        h2.fw-bold.display-5 Always In Style With Our Best Picks
+    
+    .row.g-4
+      +PromoCard('promo-rimless.png', 'Rimless', 'Timeless', 'col-md-4')
+      +PromoCard('promo-transparence.png', 'Transparence', 'Slay with', 'col-md-4')
+      +PromoCard('promo-titanium.png', 'Tales', 'Titanium', 'col-md-4')
+    .row.g-4
+      +PromoCard('promo-spring-new.png', 'Spring', 'Shades of', 'col-md-6')
+      +PromoCard('promo-dreams.png', 'Dreams', 'Big on', 'col-md-6')
